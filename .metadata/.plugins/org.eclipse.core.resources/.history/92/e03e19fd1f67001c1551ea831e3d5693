@@ -1,0 +1,5 @@
+package com.nokia.config;
+
+public class ProductApiWebSecurityConfigurer {
+
+}

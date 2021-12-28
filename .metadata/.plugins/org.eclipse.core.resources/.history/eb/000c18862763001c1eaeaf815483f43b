@@ -1,0 +1,31 @@
+package com.cloudran.test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class CloudRanLoginPageTest {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\kapadiya\\work\\software\\chrome drver\\old\\chromedriver.exe");
+
+		WebDriver webDriver = new ChromeDriver();
+
+		webDriver.get("http://localhost:8081/mcps-web/login");
+		webDriver.findElement(By.xpath("//input[@name='username']")).sendKeys("administrator");
+		Thread.sleep(2000);
+		webDriver.findElement(By.xpath("//input[@name='password']")).sendKeys("admin123");
+		Thread.sleep(2000);
+		webDriver.findElement(By.xpath("//button")).click();
+		
+		String expectedTitle=webDriver.getTitle();
+		String actualTitle="CloudRAN";
+		
+		if(expectedTitle.contains(actualTitle)) {
+			System.out.println("test script is correct and testing successfull");
+		}
+
+	}
+
+}

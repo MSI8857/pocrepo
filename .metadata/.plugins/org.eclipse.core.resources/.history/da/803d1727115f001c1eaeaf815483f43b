@@ -1,0 +1,5 @@
+package com.nokia.customer.repositories;
+
+public interface CustomerRepository {
+
+}

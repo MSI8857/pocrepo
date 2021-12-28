@@ -1,0 +1,17 @@
+package com.nokia.customer.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class CustomerDto {
+
+	private String customerId;
+	private int isAlu;
+	private String customerName;
+	private String userId;
+
+	
+
+}

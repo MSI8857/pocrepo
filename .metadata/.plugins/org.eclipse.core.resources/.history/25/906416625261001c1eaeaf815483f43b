@@ -1,0 +1,51 @@
+package com.nokia.customer.service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.nokia.customer.dto.CustomerDto;
+import com.nokia.customer.entities.Customer;
+import com.nokia.customer.repositories.CustomerRepository;
+
+@Service
+public class ManageCustomerService {
+
+	@Autowired
+	private CustomerRepository customerRepository;
+
+	@Transactional(readOnly = false)
+	public CustomerDto saveCustomer(CustomerDto customerDto) {
+		Customer customer = new Customer();
+		BeanUtils.copyProperties(customerDto, customer);
+		customer = customerRepository.save(customer);
+		return new CustomerDto(customer.getCustomerId(), customer.getIsAlu(), customer.getCustomerName(),
+				customer.getUserId());
+	}
+
+	@Transactional(readOnly = true)
+	public List<CustomerDto> getCustomers() {
+		return customerRepository.findAll().stream().map(customer -> {
+			return new CustomerDto(customer.getCustomerId(), customer.getIsAlu(), customer.getCustomerName(),
+					customer.getUserId());
+		}).collect(Collectors.toList());
+	}
+
+	@Transactional(readOnly = false)
+	public CustomerDto updateCustomer( Customer customer) {
+		Customer customer2 = customerRepository.getById(customer.getCustomerId());
+		customer = new Customer();
+		customer.setCustomerId(customer.getCustomerId());
+		customer.setIsAlu(customer2.getIsAlu());
+		customer.setCustomerName(customer2.getCustomerName());
+		customer.setUserId(customer2.getUserId());
+		customer = customerRepository.save(customer);
+		return new CustomerDto(customer.getCustomerId(), customer.getIsAlu(), customer.getCustomerName(),
+				customer.getUserId());
+	}
+
+}

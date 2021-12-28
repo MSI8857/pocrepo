@@ -1,0 +1,57 @@
+package com.cloudran.test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class HomePageTest {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\kapadiya\\work\\software\\chrome drver\\old\\chromedriver.exe");
+
+		WebDriver webDriver = new ChromeDriver();
+
+		webDriver.get("http://localhost:8081/mcps-web/login");
+
+		WebElement logo = webDriver.findElement(By.xpath("//img"));
+		String expectedTag = logo.getTagName();
+		String actualTag = "img";
+
+		if (expectedTag.equals(actualTag)) {
+			System.out.println("logo test passed");
+		} else {
+			System.out.println("logo test fail");
+		}
+
+		boolean heading = webDriver.findElement(By.linkText("Log in to your account")).isDisplayed();
+
+		if(heading) {
+			System.out.println("heading test pass");
+		}else{
+			System.out.println("heading test fail");
+		}
+		
+		webDriver.findElement(By.xpath("//input[@name='username']")).sendKeys("administrator");
+		Thread.sleep(2000);
+
+		webDriver.findElement(By.xpath("//input[@name='password']")).sendKeys("admin123");
+		Thread.sleep(2000);
+
+		webDriver.findElement(By.className("btn btn-lg btn-primary btn-block")).click();
+
+		String expectedTitle = webDriver.getTitle();
+		String actualTitle = "CloudRAN";
+
+		if (expectedTitle.equals(actualTitle)) {
+			System.out.println("sign in test passed");
+		} else {
+			System.out.println("sign in test fail");
+		}
+		Thread.sleep(2000);
+		webDriver.close();
+
+	}
+
+}

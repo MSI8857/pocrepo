@@ -1,0 +1,36 @@
+package com.nokia.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+@Configuration
+@EnableWebSecurity
+public class ProductApiWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private AuthenticationProvider authenticationProvider;
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().antMatchers("/login/**", "/oauth/autorize").permitAll().anyRequest().authenticated().and().httpBasic().and().csrf().disable();
+	}
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		/*
+		 * auth.inMemoryAuthentication().withUser("john").password(passwordEncoder.
+		 * encode("welcome1")).roles("USER", "ADMIN");
+		 */
+		auth.authenticationProvider(authenticationProvider).build();
+	}
+
+}

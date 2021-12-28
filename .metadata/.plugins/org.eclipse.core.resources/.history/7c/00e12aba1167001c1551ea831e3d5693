@@ -1,0 +1,12 @@
+package com.nokia.dto;
+
+
+public class Product {
+
+	private String productNo;
+	private String productName;
+	private String manfacturer;
+	private double price;
+
+
+}

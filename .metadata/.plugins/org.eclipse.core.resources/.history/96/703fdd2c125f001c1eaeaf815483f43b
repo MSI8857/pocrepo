@@ -1,0 +1,10 @@
+package com.nokia.customer.dto;
+
+public class CustomerDto {
+
+	private String customerId;
+	private int isAlu;
+	private String customerName;
+	private String userId;
+
+}

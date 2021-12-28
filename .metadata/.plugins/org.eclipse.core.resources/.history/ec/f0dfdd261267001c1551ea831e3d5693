@@ -1,0 +1,4 @@
+spring:
+  application:
+    name: spring-security-poc
+server:  port: 8081  address: products.com

@@ -1,0 +1,5 @@
+package com.nokia.customer.api;
+
+public class CustomerApiController {
+
+}

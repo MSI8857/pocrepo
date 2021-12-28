@@ -1,0 +1,30 @@
+package com.cloudran.test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class HomePageTest {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\kapadiya\\work\\software\\chrome drver\\old\\chromedriver.exe");
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.addArguments("--headless");
+
+		WebDriver webDriver = new ChromeDriver(chromeOptions);
+		CloudRanLoginPageTest.loginTest(webDriver);
+
+		webDriver.findElement(By.linkText("Admin Dashboard")).click();
+		webDriver.manage().window().maximize();
+
+		webDriver
+				.findElement(By.xpath(
+						"//div[@class='dhx_toolbar_btn dhxtoolbar_btn_def']/div/strong[contains(text(),'Validate')]"))
+				.click();
+		// webDriver.clo
+
+	}
+
+}

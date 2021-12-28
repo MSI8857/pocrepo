@@ -1,0 +1,41 @@
+package com.nokia.customer.dto;
+
+public class CustomerDto {
+
+	private String customerId;
+	private int isAlu;
+	private String customerName;
+	private String userId;
+	public String getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+	public int getIsAlu() {
+		return isAlu;
+	}
+	public void setIsAlu(int isAlu) {
+		this.isAlu = isAlu;
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	@Override
+	public String toString() {
+		return "CustomerDto [customerId=" + customerId + ", isAlu=" + isAlu + ", customerName=" + customerName
+				+ ", userId=" + userId + "]";
+	}
+
+	
+	
+}
